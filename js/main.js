@@ -22,6 +22,7 @@ function createGrid(cellNumber,array) {
             } else {
                 element.classList.add('point');
             }
+            element.removeEventListener ('click', function() {});
             });
         fragmentGrid.append(element);
     }
