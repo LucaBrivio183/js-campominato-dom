@@ -6,7 +6,7 @@
 
 //create grid function
 
-function createGrid(cellNumber) {
+function createGrid(cellNumber,array) {
 
     let  fragmentGrid = document.createDocumentFragment();
     
@@ -16,10 +16,13 @@ function createGrid(cellNumber) {
         element.style.width = `calc(100% / ${Math.sqrt(cellNumber)})`;
         element.style.height = element.style.width;
         element.innerText = i;
-        element.addEventListener('click', function(){
-            element.classList.add('clicked-cell');
-        })
-
+        element.addEventListener('click', function() {//waitfor click on cell
+            if (array.includes(i)) {
+                element.classList.add('bomb');
+            } else {
+                element.classList.add('point');
+            }
+            });
         fragmentGrid.append(element);
     }
     return fragmentGrid;
@@ -49,7 +52,7 @@ let difficulty = document.getElementById('difficulty');
 generateButton.addEventListener('click', 
     function() {
         grid.innerHTML = ''; //empty  the grid every click of play button
-        let  cellNumber;
+        let  cellNumber; //change grid lenght based on difficulty  chosen
     switch (difficulty.value){
         case '2':
             cellNumber = 81;
@@ -61,22 +64,21 @@ generateButton.addEventListener('click',
         default:
             cellNumber =100;
     }
-
-    console.log (cellNumber);
-    const fragmentGrid = createGrid(cellNumber);
-    grid.append(fragmentGrid);
+    //create a bomb array based on cell number
     let bombArray = generateRandomArray(cellNumber);
-    console.log (bombArray);
-}
-);
+    //create cells based on difficulty
+    const fragmentGrid = createGrid(cellNumber,bombArray);
+    grid.append(fragmentGrid);
+   
 
-
-
-
-
-//let cell = document.querySelectorAll('li');//select all cells
-//cell.forEach(function (element) { //create an element for every cell
-    //element.addEventListener('click', function() {//waitfor click on cell
-          //element.classList.add('clicked-cell'); //add css class at click
+    //let cell = document.querySelectorAll('li');//select all cells
+        //cell.forEach(function (element) { //create an element for every cell
+        //element.addEventListener('click', function() {//waitfor click on cell
+            
       //});
-  //});
+  });
+
+
+
+
+

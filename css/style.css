@@ -90,6 +90,10 @@ main .grid li {
     cursor: pointer;
 }
 
-.clicked-cell {
+.point {
     background-color: blue;
+}
+
+.bomb {
+    background-color: red;
 }
