@@ -66,6 +66,7 @@ generateButton.addEventListener('click',
     const fragmentGrid = createGrid(cellNumber);
     grid.append(fragmentGrid);
     let bombArray = generateRandomArray(cellNumber);
+    console.log (bombArray);
 }
 );
 
