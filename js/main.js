@@ -25,6 +25,18 @@ function createGrid(cellNumber) {
     return fragmentGrid;
 }
 
+//function for creating bomb
+function generateRandomArray(maxNumber) {
+    let array = [];
+    while (array.length < 16) {
+      let randomNumber = Math.floor(Math.random() * maxNumber) + 1;
+      if (!array.includes(randomNumber)) {
+        array.push(randomNumber);
+      }
+    }
+    return array;
+  }
+  
 //main
 
 //define grid variable from DOM
@@ -37,18 +49,15 @@ let difficulty = document.getElementById('difficulty');
 generateButton.addEventListener('click', 
     function() {
         grid.innerHTML = ''; //empty  the grid every click of play button
-        let difficultyValue = difficulty.value;
-        let cellNumber ;
-        console.log (difficultyValue);
-        
-    switch (difficultyValue){
-        case 2:
+        let  cellNumber;
+    switch (difficulty.value){
+        case '2':
             cellNumber = 81;
             break;
-        case 3:
+        case '3':
             cellNumber = 49;
             break;  
-        case 1: 
+        case '1': 
         default:
             cellNumber =100;
     }
@@ -56,8 +65,12 @@ generateButton.addEventListener('click',
     console.log (cellNumber);
     const fragmentGrid = createGrid(cellNumber);
     grid.append(fragmentGrid);
+    let bombArray = generateRandomArray(cellNumber);
 }
 );
+
+
+
 
 
 //let cell = document.querySelectorAll('li');//select all cells
